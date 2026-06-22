@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background 1s ease, filter 1s ease;
+    overflow: hidden;
+}
+
+/* ФОНЫ ДЛЯ ВРЕМЕНИ СУТОК */
+.morning {
+    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+}
+
+.day {
+    background: linear-gradient(135deg, #87ceeb 0%, #e0f6ff 100%);
+}
+
+.evening {
+    background: linear-gradient(135deg, #ff6b35 0%, #004e89 100%);
+}
+
+.night {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+.hot-day {
+    background: linear-gradient(135deg, #ff6b00 0%, #ffeb3b 50%, #87ceeb 100%);
+    filter: brightness(1.2) saturate(1.3);
+}
+
+.foggy {
+    background: linear-gradient(135deg, #8b8b8b 0%, #d3d3d3 100%);
+    filter: blur(0.5px);
+}
+
+.thunderstorm {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    animation: lightning 0.1s infinite;
+}
+
+@keyframes lightning {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+}
+
+.weather-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-align: center;
+    color: white;
+    min-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    position: relative;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.weather-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.info-block {
+    margin: 10px;
+}
+
+.info-block p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.info-block .value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.weather-description {
+    font-size: 20px;
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+
+.weather-icon {
+    font-size: 80px;
+    margin: 20px 0;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Эффекты погоды */
+.weather-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ДОЖДЬ */
+.raindrop {
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    animation: fall-rain 0.5s linear infinite;
+}
+
+@keyframes fall-rain {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+/* СНЕГ */
+.snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    animation: fall-snow 3s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall-snow {
+    0% { transform: translateY(0) translateX(0); opacity: 1; }
+    100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
+}
+
+/* ЗВЕЗДЫ (ночь) */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* ОБЛАКА (туман) */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 100px;
+    animation: float-cloud 20s linear infinite;
+}
+
+@keyframes float-cloud {
+    0% { transform: translateX(-100vw); }
+    100% { transform: translateX(100vw); }
+}
+
+/* МОЛНИИ (гроза) */
+.lightning-bolt {
+    position: absolute;
+    width: 2px;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, white, transparent);
+    animation: strike 0.1s ease-in infinite;
+    opacity: 0;
+}
+
+@keyframes strike {
+    0%, 10%, 100% { opacity: 0; }
+    5% { opacity: 1; }
+}
+
+/* СОЛНЦЕ (день/жара) */
+.sun {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ffff00, #ff8800);
+    border-radius: 50%;
+    top: 10%;
+    right: 10%;
+    box-shadow: 0 0 60px rgba(255, 136, 0, 0.5);
+    animation: sun-pulse 3s ease-in-out infinite;
+}
+
+@keyframes sun-pulse {
+    0%, 100% { box-shadow: 0 0 60px rgba(255, 136, 0, 0.5); }
+    50% { box-shadow: 0 0 100px rgba(255, 136, 0, 0.8); }
+}
+
+/* ЛУНА (ночь) */
+.moon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #f0f0f0);
+    border-radius: 50%;
+    top: 5%;
+    right: 5%;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.loading {
+    font-size: 18px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.time-info {
+    font-size: 16px;
+    margin-top: 15px;
+    opacity: 0.9;
+}
