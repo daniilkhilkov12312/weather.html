@@ -1,5 +1,5 @@
 const API_KEY = '1d2bb5b7d4cd293c2c5f4da8bec624b6'; // Замените на свой ключ с openweathermap.org
-const CITY = 'Nevidari';
+const CITY = 'Navodari';
 const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric&lang=ru`;
 
 function getTimeOfDay(sunrise, sunset) {
