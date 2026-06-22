@@ -1,6 +1,8 @@
-const API_KEY = '1d2bb5b7d4cd293c2c5f4da8bec624b6'; // Замените на свой ключ с openweathermap.org
-const CITY = 'Navodari';
-const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric&lang=ru`;
+// Координаты города Navodari
+const LATITUDE = 44.3467;
+const LONGITUDE = 28.8297;
+const API_KEY = 'a11f52dc4bf5ca37a6c3ae2da0f6e0a6';
+const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${LATITUDE}&lon=${LONGITUDE}&appid=${API_KEY}&units=metric&lang=ru`;
 
 function getTimeOfDay(sunrise, sunset) {
     const now = new Date().getTime() / 1000;
@@ -28,13 +30,14 @@ function getWeatherCondition(weatherType, temp, timeOfDay) {
 async function getWeather() {
     try {
         const response = await fetch(WEATHER_API_URL);
-        if (!response.ok) throw new Error('Город не найден');
+        if (!response.ok) throw new Error('Ошибка при получении данных погоды');
         
         const data = await response.json();
         displayWeather(data);
     } catch (error) {
         document.getElementById('weatherContent').innerHTML = 
             `<div class="error">❌ Ошибка: ${error.message}</div>`;
+        console.error('Weather API Error:', error);
     }
 }
 
