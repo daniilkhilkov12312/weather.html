@@ -1,7 +1,7 @@
 // Координаты города Navodari
 const LATITUDE = 44.3467;
 const LONGITUDE = 28.8297;
-const API_KEY = 'a11f52dc4bf5ca37a6c3ae2da0f6e0a6';
+const API_KEY = '9280aada2cc49efb34f7ddbe8efa373c';
 const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${LATITUDE}&lon=${LONGITUDE}&appid=${API_KEY}&units=metric&lang=ru`;
 
 function getTimeOfDay(sunrise, sunset) {
